@@ -10,5 +10,5 @@ CPMAddPackage("gh:google/googletest#v1.14.0")
 enable_testing()
 include_directories(${GTEST_INCLUDE_DIRS})
 
-#add_subdirectory(src)
+add_subdirectory(src)
 add_subdirectory(test)
