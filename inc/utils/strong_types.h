@@ -11,14 +11,14 @@ namespace utils
             using TypeId = TypeId_;
 
             explicit NamedType() = default;
-            explicit NamedType(TypeId data):m_data(data){};
+            explicit NamedType(TypeId data):_data(data){};
             ~NamedType() = default;
 
             TypeId& get() const
             {
-                return m_data;
+                return _data;
             }
         private:
-            TypeId m_data;
+            TypeId _data;
     };
 }
