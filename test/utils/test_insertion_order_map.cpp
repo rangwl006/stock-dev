@@ -22,3 +22,14 @@ TEST(InsertionOrderMapTestSuite, RemoveElementFromMap)
     map.remove("Hello");
     EXPECT_EQ(map.size(), 0);
 }
+
+TEST(InsertionOrderMapTestSuite, InitializeMapWithInitializerList)
+{
+    utils::insertion_order_map<std::string, std::string> map =
+    {
+            {"test", "suite"},
+            {"hello", "world"}
+    };
+
+    EXPECT_EQ(map.size(), 2);
+}

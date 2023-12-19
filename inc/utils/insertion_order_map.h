@@ -15,10 +15,17 @@ namespace utils
         using KeystoreType = std::vector<Key>;
         using ValuestoreType  = std::map<Key, Value>;
         using Iterator = typename KeystoreType::iterator;
+        using ValuestoreIterator = typename ValuestoreType::iterator;
 
     public:
         insertion_order_map() = default;
-//        insertion_order_map(std::initializer_list<>);
+        insertion_order_map(std::initializer_list<std::pair<Key, Value>> list)
+        {
+            for (const auto& [key, val] : list)
+            {
+                insert(key, val);
+            }
+        }
         ~insertion_order_map() = default;
 
         void insert(Key key, Value val)
@@ -47,6 +54,21 @@ namespace utils
             return m_keys.size();
         }
 
+        Iterator begin()
+        {
+            return m_keys.begin();
+        }
+
+        Iterator end()
+        {
+            return m_keys.end();
+        }
+
+        ValuestoreType::mapped_type& operator[](Key i)
+        {
+            return m_map[i];
+        }
+
         void display() const
         {
             for(auto it = m_keys.begin(); it != m_keys.end(); ++it)
@@ -58,7 +80,5 @@ namespace utils
     private:
         KeystoreType m_keys;
         ValuestoreType m_map;
-
-
     };
 }

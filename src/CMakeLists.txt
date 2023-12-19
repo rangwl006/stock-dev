@@ -1,1 +1,2 @@
+add_subdirectory(data_updater)
 add_subdirectory(application)

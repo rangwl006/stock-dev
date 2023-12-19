@@ -1,3 +1,5 @@
 cmake-build-debug
-
+cmake-build-debug-msvc
 .idea
+resources/api.key
+vcpkg.json

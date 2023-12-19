@@ -7,7 +7,7 @@
 namespace twelvedata
 {
     using ApiKey = utils::NamedType<std::string, struct ApiKey_>;
-    using EndpointPrefix = utils::NamedType<std::string, struct endpointPrefix>;
+    using EndpointPrefix = utils::NamedType<std::string, struct endpointPrefix_>;
     using RequiredParams = utils::insertion_order_map<std::string, std::string>;
     using OptionalParams = utils::insertion_order_map<std::string, std::string>;
 
@@ -18,8 +18,33 @@ namespace twelvedata
 
     struct TimeSeriesEndpointParams
     {
-        RequiredParams requiredParams;
-        OptionalParams optionalParams;
+        RequiredParams requiredParams =
+        {
+            {"symbol", ""},
+            {"interval", ""}
+        };
+        OptionalParams optionalParams
+        {
+            {"format", ""},
+            {"start_date", ""},
+            {"end_date", ""},
+            {"date", ""}
+        };
+    };
+
+    struct INTERVALS
+    {
+        static constexpr char ONE_MIN[] = "1min";
+        static constexpr char FIVE_MIN[] = "5min";
+        static constexpr char FIFTEEN_MIN[] = "15min";
+        static constexpr char THIRTY_MIN[] = "30min";
+        static constexpr char FORTYFIVE_MIN[] = "45min";
+        static constexpr char ONE_HR[] = "1h";
+        static constexpr char TWO_HR[] = "2h";
+        static constexpr char FOUR_HR[] = "4h";
+        static constexpr char ONE_DAY[] = "1day";
+        static constexpr char ONE_WEEK[] = "1week";
+        static constexpr char ONE_MONTH[] = "1month";
     };
 
     struct StocksEndpoint
@@ -29,8 +54,17 @@ namespace twelvedata
 
     struct StocksEndpointParams
     {
-        RequiredParams requiredParams;
-        OptionalParams optionalParams;
+        RequiredParams requiredParams =
+        {
+        };
+
+        OptionalParams optionalParams
+        {
+            {"exchange", ""},
+            {"type", ""},
+            {"format", ""},
+            {"delimiter", ""}
+        };
     };
 
     template<typename EndpointType>
@@ -45,7 +79,7 @@ namespace twelvedata
     template<>
     struct EndpointSelector<StocksEndpoint>
     {
-        using type = StocksEndpoint;
+        using type = StocksEndpointParams;
     };
 
     template<typename EndpointType>
