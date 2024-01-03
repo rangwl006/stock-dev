@@ -3,34 +3,41 @@
 namespace core
 {
     template<typename EndpointType_>
-    std::string RequestBuilder<EndpointType_>::buildRequest(twelvedata::Request<EndpointType> request) {
+    std::string RequestBuilder<EndpointType_>::buildRequest(twelvedata::Request<EndpointType> request)
+    {
+        _requestString.clear();
         _request = request;
         setEndpointPrefix();
         setEndpoint();
         setRequiredParams();
         setOptionalParams();
-//        setApiKey();
+        setApiKey();
         return _requestString;
     }
 
     template<typename EndpointType_>
-    void RequestBuilder<EndpointType_>::setEndpointPrefix() {
+    void RequestBuilder<EndpointType_>::setEndpointPrefix()
+    {
         _requestString += _request.endpointPrefix.get() + "/";
     }
 
     template<typename EndpointType_>
-    void RequestBuilder<EndpointType_>::setEndpoint() {
+    void RequestBuilder<EndpointType_>::setEndpoint()
+    {
         _requestString += std::string(EndpointType_::endpoint) + "?";
     }
 
     template<typename EndpointType_>
-    void RequestBuilder<EndpointType_>::setApiKey() {
+    void RequestBuilder<EndpointType_>::setApiKey()
+    {
         _requestString += "apikey=" + _request.apiKey.get();
     }
 
     template<typename EndpointType_>
-    void RequestBuilder<EndpointType_>::setRequiredParams() {
-        for (const auto &key: _request.params.requiredParams) {
+    void RequestBuilder<EndpointType_>::setRequiredParams()
+    {
+        for (const auto &key: _request.params.requiredParams)
+        {
             if (_request.params.requiredParams[key] != "")
                 _requestString += key + "=" + _request.params.requiredParams[key] + "&";
             else {
@@ -41,8 +48,10 @@ namespace core
     }
 
     template<typename EndpointType_>
-    void RequestBuilder<EndpointType_>::setOptionalParams() {
-        for (const auto &key: _request.params.optionalParams) {
+    void RequestBuilder<EndpointType_>::setOptionalParams()
+    {
+        for (const auto &key: _request.params.optionalParams)
+        {
             if (_request.params.optionalParams[key] != "")
                 _requestString += key + "=" + _request.params.optionalParams[key] + "&";
         }

@@ -26,6 +26,7 @@ namespace twelvedata
         OptionalParams optionalParams
         {
             {"format", ""},
+            {"delimiter",""},
             {"start_date", ""},
             {"end_date", ""},
             {"date", ""}
