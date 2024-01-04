@@ -1,2 +1,3 @@
 add_subdirectory(data_updater)
+add_subdirectory(data_storage)
 add_subdirectory(application)
